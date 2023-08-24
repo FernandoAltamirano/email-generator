@@ -6,30 +6,16 @@ import {
 } from "react";
 import { renderBody, renderFooterEN, renderFooterES, renderHeader } from "./html";
 import copyToClipboard from "copy-to-clipboard";
+import { Editor, FormContent } from "./modules/modules";
 import { Content } from "./interfaces/Content";
-import Editor from "./modules/editor/Editor";
-function App() {
+
+function App(): JSX.Element {
   const [content, setContent] = useState<Content[]>([]);
   const [htmlCompleteContent, setHtmlCompleteContent] = useState<string>("");
   const [editedContent, setEditedContent] = useState<string>("");
   const [showEditor, setShowEditor] = useState<boolean>(false);
   const [lang, setLang] = useState<string>("es");
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    if (showEditor) {
-      return window.alert(
-        "No puedes editar el contenido mientras estás en la vista de edición HTML. Cierra el panel derecho para poder editar el contenido."
-      );
-    }
-    setContent((content) =>
-      content.map((el) => {
-        if (el.name === event.target.name) {
-          return { ...el, value: event.target.value };
-        }
-        return el;
-      })
-    );
-  };
   const handleAddInput: MouseEventHandler<HTMLButtonElement> = () => {
     setContent([...content, { name: `content-${Date.now()}`, value: "" }]);
   };
@@ -78,11 +64,6 @@ function App() {
     handleEditView();
   };
 
-  const handleDeleteContentInput = (id: string) => {
-    setContent((content) => content.filter((el) => el.name !== id));
-    document.getElementById(id)?.remove();
-  }
-
   const handleChangeLang: ChangeEventHandler<HTMLInputElement> = (ev) => {
     console.log(ev.target.id)
     if (ev.target.id === "es") {
@@ -91,10 +72,6 @@ function App() {
       setLang("en");
     }
   }
-
-  // useEffect(() => {
-  //   setHtmlCompleteContent(defaultRenderContent());
-  // }, []);
 
   useEffect(() => {
     setHtmlCompleteContent(defaultRenderContent());
@@ -123,19 +100,8 @@ function App() {
             <label htmlFor="en">EN<input checked={lang === "en"} id="en" type="radio" name="lang" onChange={handleChangeLang} /></label>
           </div>
         </div>
-
         <div className="content-inputs-container">
-          {content.map((el) => (
-            <div className="content-item">
-              <input
-                type="text"
-                name={el.name}
-                value={el.value}
-                onChange={handleChange}
-              />
-              <button onClick={() => handleDeleteContentInput(el.name)}>Borrar</button>
-            </div>
-          ))}
+          <FormContent showEditor={showEditor} content={content} setContent={setContent} />
         </div>
         <div
           dangerouslySetInnerHTML={{
