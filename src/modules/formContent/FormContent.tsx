@@ -1,4 +1,4 @@
-import { useState, ChangeEventHandler } from "react";
+import { ChangeEventHandler } from "react";
 import { Content } from "../../interfaces/Content";
 
 interface FormContentProps{
