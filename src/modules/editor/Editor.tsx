@@ -16,8 +16,8 @@ function Editor(props: EditorProps) {
         ]}
         onChange={onChange}
       />
-      <button onClick={handleCancelChanges}>Descartar cambios</button>
-      <button onClick={handleSaveChanges}>Guardar</button>
+      <button className='editor-button discard' onClick={handleCancelChanges}>Descartar cambios</button>
+      <button className='editor-button save' onClick={handleSaveChanges}>Guardar</button>
     </div>
   );
 }

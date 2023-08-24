@@ -119,9 +119,9 @@ export const renderBody = (params: { header: string, footer: string, content: Co
                   </td>
                 </tr>
                 ${content.map((el) => `<tr>
-                  <td align="left" style="padding:5px 25px 0px;margin:0;font-size:0px;word-break:break-word">
+                  <td align="left" style="padding:20px 25px 0px;margin:0;font-size:0px;word-break:break-word">
                     <div style="font-size:16px;font-weight:400;line-height:1.5;text-align:left;color:#000000">
-                      <p id="${el.name}">${el.value}</p>
+                      <p style="margin:0;" id="${el.name}">${el.value}</p>
                     </div>
                   </td>
                 </tr>`)

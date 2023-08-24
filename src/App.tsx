@@ -4,21 +4,21 @@ import {
   useEffect,
   useState,
 } from "react";
-import { renderBody, renderFooter, renderHeader } from "./html";
+import { renderBody, renderFooterEN, renderFooterES, renderHeader } from "./html";
 import copyToClipboard from "copy-to-clipboard";
 import { Content } from "./interfaces/Content";
 import Editor from "./modules/editor/Editor";
-
 function App() {
   const [content, setContent] = useState<Content[]>([]);
   const [htmlCompleteContent, setHtmlCompleteContent] = useState<string>("");
   const [editedContent, setEditedContent] = useState<string>("");
   const [showEditor, setShowEditor] = useState<boolean>(false);
+  const [lang, setLang] = useState<string>("es");
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (showEditor) {
       return window.alert(
-        "You can't edit the template while you are editing the code. Please close the editor and try again."
+        "No puedes editar el contenido mientras estás en la vista de edición HTML. Cierra el panel derecho para poder editar el contenido."
       );
     }
     setContent((content) =>
@@ -34,16 +34,16 @@ function App() {
     setContent([...content, { name: `content-${Date.now()}`, value: "" }]);
   };
 
-  const renderContent: () => string = () =>
+  const defaultRenderContent: () => string = () =>
     `${renderBody({
       header: renderHeader(),
-      footer: renderFooter(),
+      footer: lang === "en" ? renderFooterEN() : renderFooterES(),
       content,
     })}`;
 
   const handleCopyToTheClipboard = async () => {
     copyToClipboard(htmlCompleteContent);
-    window.alert("The template has been copied to the clipboard");
+    window.alert("El contenido ha sido copiado al portapapeles.");
   };
 
   const handleEditView = () => {
@@ -61,7 +61,6 @@ function App() {
     setShowEditor(false);
     content.forEach((el) => {
       const element = document.getElementById(el.name);
-      console.log("🏝️ ~ content.forEach ~ element:", element);
       if (element) {
         setContent((content) =>
           content.map((el) => {
@@ -84,9 +83,22 @@ function App() {
     document.getElementById(id)?.remove();
   }
 
+  const handleChangeLang: ChangeEventHandler<HTMLInputElement> = (ev) => {
+    console.log(ev.target.id)
+    if (ev.target.id === "es") {
+      setLang("es");
+    } else {
+      setLang("en");
+    }
+  }
+
+  // useEffect(() => {
+  //   setHtmlCompleteContent(defaultRenderContent());
+  // }, []);
+
   useEffect(() => {
-    setHtmlCompleteContent(renderContent());
-  }, [content]);
+    setHtmlCompleteContent(defaultRenderContent());
+  }, [content, lang]);
 
   return (
     <div className="app">
@@ -98,15 +110,20 @@ function App() {
       >
         <div className="action-buttons-container">
           <button className="action" onClick={handleAddInput}>
-            add content paragraph
+            Añadir nuevo párrafo
           </button>
           <button className="action" onClick={handleCopyToTheClipboard}>
-            Copy to the clipboard
+            Copiar al portapapeles
           </button>
           <button className={`action ${showEditor ? "active" : ""}`} onClick={handleEditView}>
-            Edit template code
+            Editar código HTML
           </button>
+          <div className="lang-container">
+            <label htmlFor="es">ES<input checked={lang === "es"} id="es" type="radio" name="lang" onChange={handleChangeLang} /></label>
+            <label htmlFor="en">EN<input checked={lang === "en"} id="en" type="radio" name="lang" onChange={handleChangeLang} /></label>
+          </div>
         </div>
+
         <div className="content-inputs-container">
           {content.map((el) => (
             <div className="content-item">
@@ -116,7 +133,7 @@ function App() {
                 value={el.value}
                 onChange={handleChange}
               />
-              <button onClick={() => handleDeleteContentInput(el.name)}>Delete</button>
+              <button onClick={() => handleDeleteContentInput(el.name)}>Borrar</button>
             </div>
           ))}
         </div>

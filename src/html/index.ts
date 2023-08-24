@@ -1,3 +1,3 @@
 export {renderBody} from './body';
 export {renderHeader} from './header';
-export {renderFooter} from './footer';
+export {renderFooterES, renderFooterEN} from './footer';
