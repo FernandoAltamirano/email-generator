@@ -16,7 +16,7 @@ export const renderHeader = () => {
                   <td align="center" style="padding:0;Margin:0;font-size:0px;word-break:break-word">
                     <div class="contentImg"><img
                         src="https://banexcoin.sgp1.digitaloceanspaces.com/banexcoinweb/cabecera600.png" alt
-                        style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                        style="display:block;border:0;outline:none;text-decoration:none;height:157px;">
                     </div>
                   </td>
                 </tr>

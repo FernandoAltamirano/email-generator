@@ -6,10 +6,10 @@ export const renderFooterES = () => {
     <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
       style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;max-width:600px">
       <tr>
-        <td style="padding:0px 10px 0;Margin:0;direction:ltr;font-size:0px;text-align:center">
+        <td style="padding:0px 10px 0;Margin:0;direction:ltr;font-size:0px;text-align:center;max-width:600px">
           <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:580px;"><![endif]-->
           <table
-            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;margin:0 auto">
+            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;margin:0 auto;max-width:600px">
             <tr>
               <td style="padding:0 6px;margin:0;text-align:center"><a href="https://www.facebook.com/banexcoin"
                   target="_blank"
@@ -115,12 +115,12 @@ export const renderFooterEN = () => {
   <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;width:100%"><br><br>
     <div style="text-align:center;width:100%"></div>
     <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
-      style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;max-width:600px">
+      style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;max-width:600px;max-width:600px">
       <tr>
-        <td style="padding:0px 10px 0;Margin:0;direction:ltr;font-size:0px;text-align:center">
+        <td style="padding:0px 10px 0;Margin:0;direction:ltr;font-size:0px;text-align:center;max-width:600px">
           <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:580px;"><![endif]-->
           <table
-            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;margin:0 auto">
+            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;margin:0 auto;max-width:600px">
             <tr>
               <td style="padding:0 6px;margin:0;text-align:center"><a href="https://www.facebook.com/banexcoin"
                   target="_blank"

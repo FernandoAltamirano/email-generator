@@ -1,7 +1,7 @@
 import { Content } from "../interfaces/Content"
 
-export const renderBody = (params: { header: string, footer: string, content: Content[] }) => {
-  const { header, footer, content } = params
+export const renderBody = (params: { header: string, footer: string, content: Content[], lang: string }) => {
+  const { header, footer, content, lang = "es" } = params
   return `<!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -54,6 +54,7 @@ export const renderBody = (params: { header: string, footer: string, content: Co
 
     .contentImg img {
       width: 100% !important;
+      height: 157px !important;
     }
 
     a[x-apple-data-detectors] {
@@ -115,8 +116,8 @@ export const renderBody = (params: { header: string, footer: string, content: Co
                 <tr>
                   <td align="left" style="padding:30px 25px 0;Margin:0;font-size:0px;word-break:break-word">
                     <div style="font-size:16px;font-weight:400;line-height:1;text-align:left;color:#000000">
-                      Hello {{.Subscriber.Name}}, </div>
-                  </td>
+                      ${lang === "es" ? "Hola" : "Hello"} {{.Subscriber.Name}}, </div>
+                  </td
                 </tr>
                 ${content.map((el) => `<tr>
                   <td align="left" style="padding:20px 25px 0px;margin:0;font-size:0px;word-break:break-word">

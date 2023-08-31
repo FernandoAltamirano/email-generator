@@ -25,10 +25,11 @@ function App(): JSX.Element {
       header: renderHeader(),
       footer: lang === "en" ? renderFooterEN() : renderFooterES(),
       content,
+      lang,
     })}`;
 
   const handleCopyToTheClipboard = async () => {
-    copyToClipboard(htmlCompleteContent);
+    copyToClipboard(htmlCompleteContent.replace(/<\/tr>,<tr>/g, "<\/tr><tr>"));
     window.alert("El contenido ha sido copiado al portapapeles.");
   };
 
